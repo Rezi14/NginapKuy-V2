@@ -25,7 +25,7 @@
         </div>
     </nav>
 
-    <div class="container-fluid flex-grow-1 d-flex">
+    <div class="container-fluid grow d-flex">
         {{-- Sidebar Navigasi Admin --}}
         <div class="sidebar">
             <h5 class="text-white mb-4">Navigasi Admin</h5>

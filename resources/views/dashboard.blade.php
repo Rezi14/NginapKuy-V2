@@ -27,7 +27,7 @@
         </div>
     </nav>
 
-    <div class="container my-5 flex-grow-1">
+    <div class="container my-5 grow">
         @if (session('success'))
             <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
                 {{ session('success') }}
@@ -53,16 +53,16 @@
                         <div class="col">
                             <div class="card h-100">
                                 <img src="{{ asset($kamar->tipeKamar->foto_url) }}" class="card-img-top room-image" alt="Kamar {{ $kamar->nomor_kamar }}">
-                                
+
                                 <div class="card-body d-flex flex-column">
                                     <h3 class="card-title text-primary mb-3">Kamar Nomor: {{ $kamar->nomor_kamar }}</h3>
                                     <p class="card-text mb-2"><strong>Tipe Kamar:</strong> {{ $kamar->tipeKamar->nama_tipe_kamar }}</p>
                                     <p class="card-text mb-3 text-muted">{{ $kamar->tipeKamar->deskripsi }}</p>
-                                    
+
                                     <div class="room-price-info mt-auto">
                                         <strong>Harga/Malam:</strong> Rp {{ number_format($kamar->tipeKamar->harga_per_malam, 2, ',', '.') }}
                                     </div>
-                                    
+
                                     <div class="mt-3 text-center">
                                         {{-- Cek apakah pengguna sudah login sebelum menampilkan tombol pesan --}}
                                         @if ($user)

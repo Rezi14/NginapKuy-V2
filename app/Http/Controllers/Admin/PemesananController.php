@@ -36,7 +36,9 @@ class PemesananController extends Controller
     public function create()
     {
         $users = User::all();
-        $kamars = Kamar::all();
+        $kamars = Kamar::with('tipeKamar')
+                ->orderBy('nomor_kamar', 'asc') // urut berdasarkan id_kamar (naik)
+                ->get();
         $fasilitas = Fasilitas::all();
 
         return view('admin.pemesanans.create', compact('users', 'kamars', 'fasilitas'));

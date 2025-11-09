@@ -57,8 +57,9 @@ class FasilitasController extends Controller
     /**
      * Menampilkan formulir untuk mengedit fasilitas yang sudah ada.
      */
-    public function edit(Fasilitas $fasilitas)
+    public function edit($id) // Ubah parameter menjadi $id
     {
+        $fasilitas = Fasilitas::findOrFail($id);
         return view('admin.fasilitas.edit', compact('fasilitas'));
     }
 
@@ -66,8 +67,10 @@ class FasilitasController extends Controller
     /**
      * Memperbarui fasilitas di database.
      */
-    public function update(Request $request, Fasilitas $fasilitas)
+    public function update(Request $request, $id) // Ubah parameter menjadi $id
     {
+        $fasilitas = Fasilitas::findOrFail($id);
+
         $request->validate([
             'nama_fasilitas' => ['required', 'string', 'max:255', Rule::unique('fasilitas')->ignore($fasilitas->id_fasilitas, 'id_fasilitas')],
             'deskripsi' => 'nullable|string',
@@ -83,11 +86,13 @@ class FasilitasController extends Controller
         }
     }
 
-    /**
-     * Menghapus fasilitas dari database.
-     */
-    public function destroy(Fasilitas $fasilitas)
+/**
+ * Menghapus fasilitas dari database.
+ */
+    public function destroy($id) // Ubah parameter menjadi $id
     {
+        $fasilitas = Fasilitas::findOrFail($id);
+
         try {
             $fasilitas->delete();
             return redirect()->route('admin.fasilitas.index')->with('success', 'Fasilitas berhasil dihapus!');
